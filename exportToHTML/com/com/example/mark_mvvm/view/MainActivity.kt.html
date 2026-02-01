@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">mark_mvvm</span><span class="s2">.</span><span class="s1">view</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">ComponentActivity</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">setContent</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">viewModels</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">Image</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">MediaType</span><span class="s2">.</span><span class="s1">Companion</span><span class="s2">.</span><span class="s1">Image</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">lazy</span><span class="s2">.</span><span class="s1">LazyColumn</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">foundation</span><span class="s2">.</span><span class="s1">lazy</span><span class="s2">.</span><span class="s1">items</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">material3</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">runtime</span><span class="s2">.</span><span class="s1">Composable</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Alignment</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">Modifier</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">res</span><span class="s2">.</span><span class="s1">painterResource</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">compose</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">unit</span><span class="s2">.</span><span class="s1">dp</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">mark_mvvm</span><span class="s2">.</span><span class="s1">model</span><span class="s2">.</span><span class="s1">Food</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">mark_mvvm</span><span class="s2">.</span><span class="s1">ui</span><span class="s2">.</span><span class="s1">theme</span><span class="s2">.</span><span class="s1">Mark_MvvmTheme</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">mark_mvvm</span><span class="s2">.</span><span class="s1">viewmodel</span><span class="s2">.</span><span class="s1">FoodViewModel</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : ComponentActivity</span><span class="s2">() {</span>
+
+    <span class="s1">private </span><span class="s0">val </span><span class="s1">viewModel: FoodViewModel by viewModels</span><span class="s2">()</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+
+        <span class="s1">setContent </span><span class="s2">{</span>
+            <span class="s1">Mark_MvvmTheme</span><span class="s2">{</span>
+                <span class="s1">FoodScreen</span><span class="s2">(</span><span class="s1">viewModel </span><span class="s2">= </span><span class="s1">FoodViewModel</span><span class="s2">())</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s1">@OptIn</span><span class="s2">(</span><span class="s1">ExperimentalMaterial3Api::</span><span class="s0">class</span><span class="s2">)</span>
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">FoodScreen</span><span class="s2">(</span><span class="s1">viewModel: FoodViewModel</span><span class="s2">) {</span>
+
+    <span class="s0">val </span><span class="s1">foods </span><span class="s2">= </span><span class="s1">viewModel</span><span class="s2">.</span><span class="s1">foods</span><span class="s2">.</span><span class="s1">value</span>
+
+    <span class="s1">Scaffold</span><span class="s2">(</span>
+        <span class="s1">topBar </span><span class="s2">= {</span>
+            <span class="s1">TopAppBar</span><span class="s2">(</span>
+                <span class="s1">title </span><span class="s2">= { </span><span class="s1">Text</span><span class="s2">(</span><span class="s3">&quot;Food Items&quot;</span><span class="s2">) }</span>
+            <span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">) { </span><span class="s1">padding </span><span class="s2">-&gt;</span>
+
+        <span class="s1">LazyColumn</span><span class="s2">(</span>
+            <span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span>
+                <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s1">padding</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s4">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">)</span>
+        <span class="s2">) {</span>
+            <span class="s1">items</span><span class="s2">(</span><span class="s1">foods</span><span class="s2">) { </span><span class="s1">food </span><span class="s2">-&gt;</span>
+                <span class="s1">FoodItem</span><span class="s2">(</span><span class="s1">food</span><span class="s2">)</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">FoodItem</span><span class="s2">(</span><span class="s1">food: Food</span><span class="s2">) {</span>
+    <span class="s1">Card</span><span class="s2">(</span>
+        <span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span>
+            <span class="s2">.</span><span class="s1">fillMaxWidth</span><span class="s2">()</span>
+            <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s1">vertical </span><span class="s2">= </span><span class="s4">6</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">)</span>
+    <span class="s2">) {</span>
+        <span class="s1">Row</span><span class="s2">(</span>
+            <span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span><span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s4">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">),</span>
+            <span class="s1">verticalAlignment </span><span class="s2">= </span><span class="s1">Alignment</span><span class="s2">.</span><span class="s1">CenterVertically</span>
+        <span class="s2">) {</span>
+            <span class="s1">Image</span><span class="s2">(</span>
+                <span class="s1">painter </span><span class="s2">= </span><span class="s1">painterResource</span><span class="s2">(</span><span class="s1">id </span><span class="s2">= </span><span class="s1">food</span><span class="s2">.</span><span class="s1">imageRes</span><span class="s2">),</span>
+                <span class="s1">contentDescription </span><span class="s2">= </span><span class="s3">&quot;Food Image&quot;</span><span class="s2">,</span>
+                <span class="s1">modifier </span><span class="s2">= </span><span class="s1">Modifier</span>
+                    <span class="s2">.</span><span class="s1">size</span><span class="s2">(</span><span class="s4">64</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">)</span>
+                    <span class="s2">.</span><span class="s1">padding</span><span class="s2">(</span><span class="s1">end </span><span class="s2">= </span><span class="s4">16</span><span class="s2">.</span><span class="s1">dp</span><span class="s2">)</span>
+            <span class="s2">)</span>
+        <span class="s2">}</span>
+        <span class="s1">Column </span><span class="s2">{</span>
+            <span class="s1">Text</span><span class="s2">(</span><span class="s1">text </span><span class="s2">= </span><span class="s1">food</span><span class="s2">.</span><span class="s1">name</span><span class="s2">, </span><span class="s1">style </span><span class="s2">= </span><span class="s1">MaterialTheme</span><span class="s2">.</span><span class="s1">typography</span><span class="s2">.</span><span class="s1">titleMedium</span><span class="s2">)</span>
+            <span class="s1">Text</span><span class="s2">(</span><span class="s1">text </span><span class="s2">= </span><span class="s1">food</span><span class="s2">.</span><span class="s1">price</span><span class="s2">, </span><span class="s1">style </span><span class="s2">= </span><span class="s1">MaterialTheme</span><span class="s2">.</span><span class="s1">typography</span><span class="s2">.</span><span class="s1">bodyMedium</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
